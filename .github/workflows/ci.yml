@@ -26,7 +26,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t student-api .
+          docker build -t student-api ./student-api
 
       - name: Tag image
         run: |
