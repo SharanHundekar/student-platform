@@ -15,16 +15,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
+      - name: Login to DockerHub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      - name: Install dependencies
-        run: |
-          cd student-api
-          npm install
-      
       - name: Build Docker Image
-        run: |
-          docker build -t student-api ./student-api
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/student-api:latest ./student-api
+
+      - name: Push Docker Image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/student-api:latest
