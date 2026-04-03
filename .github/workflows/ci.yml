@@ -24,3 +24,7 @@ jobs:
         run: |
           cd student-api
           npm install
+      
+      - name: Build Docker Image
+        run: |
+          docker build -t student-api ./student-api
