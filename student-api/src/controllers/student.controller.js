@@ -7,6 +7,7 @@ exports.getStudents = async (req, res) => {
 
 exports.createStudent = async (req, res) => {
   const { name, age } = req.body;
+  console.log('Tets')
   const student = await service.createStudent(name, age);
   res.json(student);
 };
